@@ -9,4 +9,3 @@ quack.ensure('strinng').either(quack.not.isNull, quack.isNumber);
 
 
 quack.ensure('string').not.isNull().isString().either(quack.isNumber, quack.not.isNull);
-quack.ensure()
