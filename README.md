@@ -14,6 +14,8 @@ overhead due to the ability to dynamically disable itself in production environm
 removal of type-checking conditions. This ensures the ability to retain all type-checking in development 
 environments while having it disabled in production.
 
+It has exchangeable support for both node.js and the browser with optional AMD support.
+
 Note: This is a work in progress with some key implementations remaining.
 
 Todo
