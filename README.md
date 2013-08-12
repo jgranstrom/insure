@@ -16,6 +16,10 @@ environments while having it disabled in production.
 
 It has exchangeable support for both node.js and the browser with optional AMD support.
 
+Quack can easily be extended with custom assertion tests which can be used to add as much power as 
+needed for a specific project, and may extend well beyond standard type-checking while still centrally
+powered by quack.
+
 Note: This is a work in progress with some key implementations remaining.
 
 Todo
