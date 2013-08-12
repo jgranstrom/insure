@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2013 John Granström
+ * This content is released under the MIT License.
+ */
 (function() {
   'use strict';
 
