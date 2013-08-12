@@ -20,6 +20,10 @@ Quack can easily be extended with custom assertion tests which can be used to ad
 needed for a specific project, and may extend well beyond standard type-checking while still centrally
 powered by quack.
 
+Automatically supports inverted test and or-clauses for built-in and user added assertion tests with no 
+explicit configuration or changes needed. Add the check once for the default case and get all other 
+functionality automatically.
+
 Note: This is a work in progress with some key implementations remaining.
 
 Todo
@@ -27,7 +31,7 @@ Todo
 
 * Informative error messages on type errors
 * More built-in assertions
-* Better inversion-technique with support within either()
 * Documentation
 * Tests
 * Separation of core to enable exclusion of large parts of the source for production environments with no code changes
+* Function reuse optimization
