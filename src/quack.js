@@ -40,11 +40,11 @@
 	}
 
 	/**
-	 * Test all variables of the QuackObject against a callback,
-	 * return result of assertion which is this.
+	 * Test all variables of the QuackObject against a callback
 	 * General test method for default assertions
 	 * 
 	 * Call in context of a quack object
+	 * @return this
 	 */
 	function test(context, callback) {
 		if(!isEnabled()) return context;
@@ -148,8 +148,10 @@
 	 */
 	function QuackObject(variables) {
 		this.variables = variables;
-		// Override actual context for sub object methods
+		// Override actual context for sub object methods		
 		this.not.actualContext = this;
+		// Provide optional and for more readable conditions
+		this.and = this;
 	}
 
 	/**
@@ -163,6 +165,11 @@
 		 * QuackObject for these to test types upon.
 		 */
 		ensure: quackObj.ensure,
+
+		/**
+		 * Override by constructor
+		 */
+		and: undefined,
 
 		/* For each assertion function provided, test each
 		 * variable to succeed for at least one assertions function.
@@ -203,6 +210,7 @@
 
 	// Register default assertions to quack
 	(function() {
+
 		/**
 		 * Test an object for being a true array
 		 */
