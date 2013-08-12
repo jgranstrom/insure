@@ -3,7 +3,7 @@
  * This content is released under the MIT License.
  */
 (function() {
-  'use strict';
+	'use strict';
 
 	/**
 	 * Determine if quack is globally enabled
@@ -66,6 +66,11 @@
 		if(typeof quackObj[name] === 'undefined') {
 			// Add assertion callback on public API
 			quackObj[name] = assertionCallback;
+			// Add inverted assertion callback on public API not-object
+			quackObj.not[name] = function() {
+				// Assertions on global object are instance-independent
+				return !assertionCallback.apply(null, arguments); // Inverse return for not
+			};
 
 			// Add test method to quack prototype, calling test
 			// in the context of the current QuackObject
@@ -73,6 +78,15 @@
 				return test(this, function(variable) {
 					return quackObj[name](variable);
 				});
+			};
+			// Add inverted test method to quack prototype,
+			// invert return value and use actualContext to
+			// bind quack object to this instead of not-object
+			QuackObject.prototype.not[name] = function() {
+				// Actual context is overriden on instances				
+				return test(this.actualContext, function(variable) {
+					return quackObj.not[name](variable); // Call not-assertion
+				});	
 			};
 		} else {
 			throw new Error('Cannot register ' + name + ' as it is already registered.');
@@ -114,14 +128,13 @@
 			return new QuackObject([].slice.call(arguments));
 		},
 
+		/** Instance-independent assertions added dynamically **/
+
 		/**
-		 * Contain inverted assertions
+		 * Instance-independent not-assertions added dynamically
 		 */
-		not: function(assertion) {
-			var self = this;
-			return test(self, function(variable) {
-				return !assertion.call(self, variable);
-			});
+		not: {
+
 		},
 
 		/** 
@@ -135,6 +148,8 @@
 	 */
 	function QuackObject(variables) {
 		this.variables = variables;
+		// Override actual context for sub object methods
+		this.not.actualContext = this;
 	}
 
 	/**
@@ -177,10 +192,13 @@
 			return assertion(this, false);
 		},
 
-		/**
-		 * Contain inverted assertions
-		 */
-		not: quackObj.not
+		not: {
+			/**
+			 * Overriden by quack object instances
+			 * to bind actual quack context for object methods
+			 */
+			actualContext: undefined
+		}
 	};
 
 	// Register default assertions to quack
