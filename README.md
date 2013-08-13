@@ -29,10 +29,6 @@ Note: This is a work in progress with some key implementations remaining.
 Todo
 =
 
-* Informative error messages on type errors
 * More built-in assertions
 * Documentation
 * Tests
-* Separation of core to enable exclusion of large parts of the source for production environments with no code changes
-* Syntax improvements
-* Function reuse optimization
