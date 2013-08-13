@@ -34,4 +34,5 @@ Todo
 * Documentation
 * Tests
 * Separation of core to enable exclusion of large parts of the source for production environments with no code changes
+* Syntax improvements
 * Function reuse optimization
