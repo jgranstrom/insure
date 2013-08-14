@@ -1,4 +1,4 @@
-insure
+insure 0.0.2
 =====
 
 Unobtrusive lightweight development type-checking framework
