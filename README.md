@@ -1,4 +1,4 @@
-ensure
+insure
 =====
 
 Unobtrusive lightweight development type-checking framework
@@ -11,14 +11,14 @@ the addition of type checking conditions where needed. No preprocessor or supers
 required due to dynamic runtime type-checking, with the bonus of checking real-life state which implicates 
 true support for the dynamic runtime nature of JavaScript. All this while maintaining minimal performance 
 overhead due to the ability to dynamically disable itself in production environments without requiring the
-removal of type-checking conditions. This ensures the ability to retain all type-checking in development 
+removal of type-checking conditions. This enables the ability to retain all type-checking in development 
 environments while having it disabled in production.
 
 It has exchangeable support for both node.js and the browser.
 
-Ensure can easily be extended with custom assertion tests which can be used to add as much power as
+Insure can easily be extended with custom assertion tests which can be used to add as much power as
 needed for a specific project, and may extend well beyond standard type-checking while still centrally
-powered by ensure.
+powered by insure.
 
 Automatically supports inverted tests and or-clauses for built-in and user added assertion tests with no
 explicit configuration or changes needed. Add the check once for the default case and get all other 
@@ -32,6 +32,4 @@ Todo
 * More built-in assertions
 * Documentation
 * Tests
-* Minimized files for browser
-* node module package
 * bower package

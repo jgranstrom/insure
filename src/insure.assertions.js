@@ -2,19 +2,19 @@
  * Copyright (c) 2013 John Granström
  * This content is released under the MIT License.
  *
- * ensure.js default assertions
+ * insure.js default assertions
  */
 (function() {
     'use strict';
 
-    var ensure;
+    var insure;
     if(typeof module !== 'undefined' &&  typeof module.exports !== 'undefined') {
-        ensure = require('./ensure');
+        insure = require('./insure');
     } else {
-        ensure = window.ensure;
+        insure = window.insure;
     }
 
-    ensure.registerAssertion('number', function(variable) {
+    insure.registerAssertion('number', function(variable) {
         return typeof variable === 'number';
     }).registerAssertion('string', function(variable) {
             return typeof variable === 'string';
