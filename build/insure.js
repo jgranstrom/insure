@@ -2,7 +2,7 @@
  * Copyright (c) 2013 John Granström
  * This content is released under the MIT License.
  *
- * Core ensure.js implementation
+ * Core insure.js implementation
  */
 (function() {
     'use strict';
@@ -10,15 +10,15 @@
     var disabled = false;
 
     /**
-     * Mock ensure instance object with mock API
+     * Mock insure instance object with mock API
      */
-    var mockEnsureObject = {
+    var mockInsureObject = {
         must: function() {
-            return mockEnsureObject;
+            return mockInsureObject;
         },
 
         either: function() {
-            return mockEnsureObject;
+            return mockInsureObject;
         }
     };
 
@@ -49,7 +49,7 @@
             }
         }
 
-        return clauseType + '-clause failed to ensure state of variable with index ' + variableIndex +
+        return clauseType + '-clause failed to insure state of variable with index ' + variableIndex +
             ' [value: ' + variableValue + '] for ' + assertionString.trim();
     }
 
@@ -109,27 +109,27 @@
     InvertedAssertion.prototype.constructor = InvertedAssertion;
 
     /**
-     * Ensure instance
+     * Insure instance
      *
      * @constructor
-     * @param {[string]} variables The underlying variables for this EnsureObject
+     * @param {[string]} variables The underlying variables for this InsureObject
      */
-    function EnsureObject(variables) {
+    function InsureObject(variables) {
         this.variables = variables;
     }
 
     /**
-     * Ensure instance prototype
+     * Insure instance prototype
      */
-    EnsureObject.prototype = {
-        constructor: EnsureObject,
+    InsureObject.prototype = {
+        constructor: InsureObject,
 
         /**
          * Make assertions for the variables of this instance
          * All assertions must be satisfied
          *
          * @param {...Assertion} Assertions to make
-         * @return Current ensure instance
+         * @return Current insure instance
          */
         must: function(/* Assertion instances */) {
             if(disabled) return this;
@@ -150,7 +150,7 @@
          * At least one assertion must be satisfied per variable
          *
          * @param {...Assertion} Assertions to make
-         * @return Current ensure instance
+         * @return Current insure instance
          */
         either: function(/* Assertion instances */) {
             if(disabled) return this;
@@ -171,24 +171,24 @@
     };
 
     /**
-     * Global ensure function
+     * Global insure function
      *
      * @param {...object} Variable to make assertions upon
-     * @return {EnsureObject | object} New ensure instance
+     * @return {InsureObject | object} New insure instance
      */
-    function ensure(/* Variables */) {
-        if(disabled) return mockEnsureObject;
+    function insure(/* Variables */) {
+        if(disabled) return mockInsureObject;
 
-        return new EnsureObject(Array.prototype.slice.call(arguments));
+        return new InsureObject(Array.prototype.slice.call(arguments));
     }
 
-    /* Assertions registered dynamically to ensure object */
+    /* Assertions registered dynamically to insure object */
 
     /**
      * Object for inverted assertions
      */
-    ensure.not = {
-        /* Inverted assertions registered dynamically to ensure.not object */
+    insure.not = {
+        /* Inverted assertions registered dynamically to insure.not object */
     };
 
     /**
@@ -197,21 +197,21 @@
      *
      * @param {string} assertionName Name of the assertion to register
      * @param {function} assertionFunc The assertion callback function
-     * @return {object} Ensure object for chaining
+     * @return {object} Insure object for chaining
      */
-    ensure.registerAssertion = function (assertionName, assertionFunc) {
-        if(disabled) return ensure;
+    insure.registerAssertion = function (assertionName, assertionFunc) {
+        if(disabled) return insure;
 
-        if(ensure[assertionName]) {
+        if(insure[assertionName]) {
             throw new Error('Cannot register assertion since an assertion with the same name already exists');
         }
 
         var assertion = new Assertion(assertionName, assertionFunc);
 
-        ensure[assertionName] = assertion;
-        ensure.not[assertionName] = new InvertedAssertion(assertion);
+        insure[assertionName] = assertion;
+        insure.not[assertionName] = new InvertedAssertion(assertion);
 
-        return ensure;
+        return insure;
     };
 
     /**
@@ -219,18 +219,18 @@
      * All type-checking will be bypassed silently without breaking implementations
      * Call on initialization phase if in production environment
      */
-    ensure.disable = function() {
+    insure.disable = function() {
         disabled = true;
     };
 
-    // Export ensure as node module or on window object
+    // Export insure as node module or on window object
     if(typeof module !== 'undefined' &&  typeof module.exports !== 'undefined') {
-        module.exports = ensure;
+        module.exports = insure;
 
         // Require assertions if node module
-        require('./ensure.assertions.js');
+        require('./insure.assertions.js');
     } else {
-        window.ensure = window.ensure || ensure;
+        window.insure = window.insure || insure;
     }
 }());
 /**

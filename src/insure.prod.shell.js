@@ -2,53 +2,53 @@
  * Copyright (c) 2013 John Granström
  * This content is released under the MIT License.
  *
- * Mock production ensure.js shell implementation
+ * Mock production insure.js shell implementation
  */
 (function() {
     'use strict';
 
     /**
-     * Mock ensure instance object with mock API
+     * Mock insure instance object with mock API
      */
-    var mockEnsureObject = {
+    var mockInsureObject = {
         must: function() {
-            return mockEnsureObject;
+            return mockInsureObject;
         },
 
         either: function() {
-            return mockEnsureObject;
+            return mockInsureObject;
         }
     };
 
     /**
-     * Mock global ensure object
+     * Mock global insure object
      */
-    function ensure() {
-        return mockEnsureObject;
+    function insure() {
+        return mockInsureObject;
     }
 
     /**
      * Mock not-object
      */
-    ensure.not = {};
+    insure.not = {};
 
     /**
      * Mock register function
      */
-    ensure.registerAssertion = function () {
-        return ensure;
+    insure.registerAssertion = function () {
+        return insure;
     };
 
     /**
      * Mock disable function
      * Production shell disabled by default
      */
-    ensure.disable = function() {};
+    insure.disable = function() {};
 
-    // Export ensure as node module or on window object
+    // Export insure as node module or on window object
     if(typeof module !== 'undefined' &&  typeof module.exports !== 'undefined') {
-        module.exports = exports = ensure;
+        module.exports = exports = insure;
     } else {
-        window.ensure = window.ensure || ensure;
+        window.insure = window.insure || insure;
     }
 }());
