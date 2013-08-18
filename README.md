@@ -1,6 +1,6 @@
 insure
 =====
-*v0.0.2*
+*v0.0.3*
 
 Unobtrusive lightweight development type-checking framework
 
