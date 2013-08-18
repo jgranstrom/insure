@@ -50,7 +50,7 @@ do ->
       return this if disabled
 
       for variable, i in @variables
-        for assertion, j in arguments when not assertion.assert(variable)
+        for assertion in arguments when not assertion.assert(variable)
           throwAssertionError("must", i, variable, assertion)
 
       this
@@ -65,14 +65,14 @@ do ->
       this
 
   insure = ->
-    return this if disabled
+    return mockInsureObject if disabled
 
     new InsureObject(arguments)
 
   insure.not = {}
 
   insure.registerAssertion = (assertionName, assertionFunc) ->
-    return this if disabled
+    return insure if disabled
 
     if insure[assertionName]?
       throw new Error("Cannot register assertion since an assertion with the same name already exists");
@@ -89,6 +89,6 @@ do ->
   if module?.exports?
     module.exports = insure
 
-    require './insure.assertions.js'
+    require './insure.refactor.assertions.js'
   else
     window.insure ?= insure
