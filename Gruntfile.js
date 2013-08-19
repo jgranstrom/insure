@@ -53,11 +53,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-coffeelint');
   grunt.loadNpmTasks('grunt-contrib-coffee');
 
-<<<<<<< HEAD
-  grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
-  grunt.registerTask('build-nolint', ['concat', 'uglify']);
-=======
   grunt.registerTask('build', ['coffeelint', 'coffee', 'concat', 'uglify']);
->>>>>>> origin/coffescript-refactor
   grunt.registerTask('default', ['build']);
 };
