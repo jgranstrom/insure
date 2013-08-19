@@ -1,6 +1,6 @@
 {
   "name": "insure",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Unobtrusive lightweight development type-checking framework",
   "main": "src/insure.js",
   "scripts": {
@@ -10,13 +10,14 @@
     "type": "git",
     "url": "https://github.com/jgranstrom/insure"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.2",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.2"
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-coffeelint": "0.0.7",
+    "grunt-contrib-coffee": "~0.7.0"
   },
   "keywords": [
     "insure",

@@ -31,13 +31,33 @@ module.exports = function(grunt) {
       options: {
       }
     },
+
+    coffeelint: {
+      src: ['src/*.coffee']
+    },
+
+    coffee: {
+      compile: {
+        files: {
+          'src/insure.js': 'src/insure.coffee',
+          'src/insure.assertions.js': 'src/insure.assertions.coffee',
+          'src/insure.prod.shell.js': 'src/insure.prod.shell.coffee'
+        }
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-coffeelint');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
+<<<<<<< HEAD
   grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
   grunt.registerTask('build-nolint', ['concat', 'uglify']);
+=======
+  grunt.registerTask('build', ['coffeelint', 'coffee', 'concat', 'uglify']);
+>>>>>>> origin/coffescript-refactor
   grunt.registerTask('default', ['build']);
 };
